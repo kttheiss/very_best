@@ -9,6 +9,9 @@ class VenueResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :dishes_at_venues,
+             resource: UniqueListingResource
+
   # Indirect associations
 
 end
