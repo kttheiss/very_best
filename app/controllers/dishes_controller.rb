@@ -8,6 +8,7 @@ class DishesController < ApplicationController
 
   # GET /dishes/1
   def show
+    @unique_listing = UniqueListing.new
   end
 
   # GET /dishes/new

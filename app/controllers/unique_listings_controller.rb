@@ -24,7 +24,12 @@ class UniqueListingsController < ApplicationController
     @unique_listing = UniqueListing.new(unique_listing_params)
 
     if @unique_listing.save
-      redirect_to @unique_listing, notice: 'Unique listing was successfully created.'
+      message = 'UniqueListing was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @unique_listing, notice: message
+      end
     else
       render :new
     end
