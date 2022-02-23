@@ -1,7 +1,6 @@
 <% was_validated = venue.errors.any? %>
 
 <%= form_with(model: venue, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for address start -->
   <div class="form-group">
     <% address_class = "form-control" %>
     <% address_was_invalid = venue.errors.include?(:address) %>
@@ -15,9 +14,7 @@
     <% end %>
 
     <%= f.label :address %>
-    <!-- Input for address start -->
     <%= f.text_area :address, class: address_class, placeholder: "Enter address" %>
-    <!-- Input for address end -->
     <% if address_was_invalid %>
       <% venue.errors.full_messages_for(:address).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -26,8 +23,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for address end -->
-  <!-- Label and input for dish_id start -->
   <div class="form-group">
     <% dish_class = "form-control" %>
     <% dish_was_invalid = venue.errors.include?(:dish) %>
@@ -41,9 +36,7 @@
     <% end %>
 
     <%= f.label :dish_id %>
-    <!-- Input for dish_id start -->
     <%= f.number_field :dish_id, class: dish_class, placeholder: "Enter dish" %>
-    <!-- Input for dish_id end -->
     <% if dish_was_invalid %>
       <% venue.errors.full_messages_for(:dish).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -52,8 +45,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for dish_id end -->
-  <!-- Label and input for google_maps_url start -->
   <div class="form-group">
     <% google_maps_url_class = "form-control" %>
     <% google_maps_url_was_invalid = venue.errors.include?(:google_maps_url) %>
@@ -67,9 +58,7 @@
     <% end %>
 
     <%= f.label :google_maps_url %>
-    <!-- Input for google_maps_url start -->
     <%= f.text_field :google_maps_url, class: google_maps_url_class, placeholder: "Enter google maps url" %>
-    <!-- Input for google_maps_url end -->
     <% if google_maps_url_was_invalid %>
       <% venue.errors.full_messages_for(:google_maps_url).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -78,8 +67,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for google_maps_url end -->
-  <!-- Label and input for neighborhood_id start -->
   <div class="form-group">
     <% neighborhood_class = "form-control" %>
     <% neighborhood_was_invalid = venue.errors.include?(:neighborhood) %>
@@ -93,9 +80,7 @@
     <% end %>
 
     <%= f.label :neighborhood_id %>
-    <!-- Input for neighborhood_id start -->
     <%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for neighborhood_id end -->
     <% if neighborhood_was_invalid %>
       <% venue.errors.full_messages_for(:neighborhood).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -104,6 +89,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for neighborhood_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

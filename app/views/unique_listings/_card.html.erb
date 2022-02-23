@@ -6,22 +6,18 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Dish</dt>
-      <!-- Display dish_id start -->
       <dd>
         <% if @unique_listing.dish.present? %>
           <%= link_to unique_listing.dish, unique_listing.dish %>
         <% end %>
       </dd>
-      <!-- Display dish_id end -->
 
       <dt>Venue</dt>
-      <!-- Display venue_id start -->
       <dd>
         <% if @unique_listing.venue.present? %>
           <%= link_to unique_listing.venue, unique_listing.venue %>
         <% end %>
       </dd>
-      <!-- Display venue_id end -->
 
     </dl>
 
@@ -30,21 +26,17 @@
         <%= link_to_show_or_back unique_listing, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link unique_listing start -->
       <div class="col">
         <%= link_to edit_unique_listing_url(unique_listing), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link unique_listing end -->
 
-      <!-- Delete link unique_listing start -->
       <div class="col">
         <%= link_to unique_listing, method: :delete, data: { confirm: "Do you really want to delete this unique_listing?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link unique_listing end -->
     </div>
   </div>
 
