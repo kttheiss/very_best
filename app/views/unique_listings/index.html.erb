@@ -34,6 +34,10 @@
       <div class="list-group list-group-flush">
         <%= render collection: @unique_listings, partial: "list_item", as: :unique_listing %>
       </div>
+      <div class="card-footer d-flex justify-content-center">
+        <%= paginate @unique_listings, theme: 'twitter-bootstrap-4' %>
+      </div>
+
     </div>
   </div>
 </div>

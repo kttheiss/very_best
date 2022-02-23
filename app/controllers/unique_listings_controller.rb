@@ -3,7 +3,7 @@ class UniqueListingsController < ApplicationController
 
   # GET /unique_listings
   def index
-    @unique_listings = UniqueListing.all
+    @unique_listings = UniqueListing.page(params[:page]).per(10)
   end
 
   # GET /unique_listings/1
