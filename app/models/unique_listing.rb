@@ -1,6 +1,8 @@
 class UniqueListing < ApplicationRecord
   # Direct associations
 
+  belongs_to :venue
+
   belongs_to :dish
 
   # Indirect associations
