@@ -7,6 +7,10 @@ class Dish < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :venues,
+             :through => :dishes_at_venues,
+             :source => :venue
+
   # Validations
 
   # Scopes

@@ -12,6 +12,10 @@ class Venue < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :dishes,
+             :through => :dishes_at_venues,
+             :source => :dish
+
   has_many   :users,
              :through => :bookmarks,
              :source => :user
