@@ -1,15 +1,15 @@
 class UniqueListingsController < ApplicationController
-  before_action :set_unique_listing, only: [:show, :edit, :update, :destroy]
+  before_action :set_unique_listing, only: %i[show edit update destroy]
 
   # GET /unique_listings
   def index
     @q = UniqueListing.ransack(params[:q])
-    @unique_listings = @q.result(:distinct => true).includes(:dish, :venue).page(params[:page]).per(10)
+    @unique_listings = @q.result(distinct: true).includes(:dish,
+                                                          :venue).page(params[:page]).per(10)
   end
 
   # GET /unique_listings/1
-  def show
-  end
+  def show; end
 
   # GET /unique_listings/new
   def new
@@ -17,17 +17,16 @@ class UniqueListingsController < ApplicationController
   end
 
   # GET /unique_listings/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /unique_listings
   def create
     @unique_listing = UniqueListing.new(unique_listing_params)
 
     if @unique_listing.save
-      message = 'UniqueListing was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "UniqueListing was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @unique_listing, notice: message
       end
@@ -39,7 +38,8 @@ class UniqueListingsController < ApplicationController
   # PATCH/PUT /unique_listings/1
   def update
     if @unique_listing.update(unique_listing_params)
-      redirect_to @unique_listing, notice: 'Unique listing was successfully updated.'
+      redirect_to @unique_listing,
+                  notice: "Unique listing was successfully updated."
     else
       render :edit
     end
@@ -49,22 +49,22 @@ class UniqueListingsController < ApplicationController
   def destroy
     @unique_listing.destroy
     message = "UniqueListing was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to unique_listings_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_unique_listing
-      @unique_listing = UniqueListing.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def unique_listing_params
-      params.require(:unique_listing).permit(:dish_id, :venue_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_unique_listing
+    @unique_listing = UniqueListing.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def unique_listing_params
+    params.require(:unique_listing).permit(:dish_id, :venue_id)
+  end
 end

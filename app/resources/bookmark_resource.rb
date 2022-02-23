@@ -12,5 +12,4 @@ class BookmarkResource < ApplicationResource
   belongs_to :venue
 
   # Indirect associations
-
 end

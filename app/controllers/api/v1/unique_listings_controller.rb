@@ -13,7 +13,7 @@ class Api::V1::UniqueListingsController < Api::V1::GraphitiController
     unique_listing = UniqueListingResource.build(params)
 
     if unique_listing.save
-      render jsonapi: unique_listing, status: 201
+      render jsonapi: unique_listing, status: :created
     else
       render jsonapi_errors: unique_listing
     end
@@ -33,7 +33,7 @@ class Api::V1::UniqueListingsController < Api::V1::GraphitiController
     unique_listing = UniqueListingResource.find(params)
 
     if unique_listing.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: unique_listing
     end

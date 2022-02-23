@@ -4,21 +4,21 @@ class Venue < ApplicationRecord
   belongs_to :neighborhood
 
   has_many   :bookmarks,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :dishes_at_venues,
-             :class_name => "UniqueListing",
-             :dependent => :destroy
+             class_name: "UniqueListing",
+             dependent: :destroy
 
   # Indirect associations
 
   has_many   :dishes,
-             :through => :dishes_at_venues,
-             :source => :dish
+             through: :dishes_at_venues,
+             source: :dish
 
   has_many   :users,
-             :through => :bookmarks,
-             :source => :user
+             through: :bookmarks,
+             source: :user
 
   # Validations
 
@@ -27,5 +27,4 @@ class Venue < ApplicationRecord
   def to_s
     address
   end
-
 end
