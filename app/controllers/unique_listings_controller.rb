@@ -3,7 +3,8 @@ class UniqueListingsController < ApplicationController
 
   # GET /unique_listings
   def index
-    @unique_listings = UniqueListing.page(params[:page]).per(10)
+    @q = UniqueListing.ransack(params[:q])
+    @unique_listings = @q.result(:distinct => true).includes(:dish, :venue).page(params[:page]).per(10)
   end
 
   # GET /unique_listings/1

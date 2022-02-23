@@ -3,7 +3,8 @@ class DishesController < ApplicationController
 
   # GET /dishes
   def index
-    @dishes = Dish.page(params[:page]).per(10)
+    @q = Dish.ransack(params[:q])
+    @dishes = @q.result(:distinct => true).includes(:dishes_at_venues, :venues).page(params[:page]).per(10)
   end
 
   # GET /dishes/1
