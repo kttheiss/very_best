@@ -1,0 +1,46 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Unique Listing #<%= unique_listing.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Dish</dt>
+      <!-- Display dish_id start -->
+      <dd><%= unique_listing.dish_id %></dd>
+      <!-- Display dish_id end -->
+
+      <dt>Venue</dt>
+      <!-- Display venue_id start -->
+      <dd><%= unique_listing.venue_id %></dd>
+      <!-- Display venue_id end -->
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back unique_listing, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <!-- Edit link unique_listing start -->
+      <div class="col">
+        <%= link_to edit_unique_listing_url(unique_listing), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+      <!-- Edit link unique_listing end -->
+
+      <!-- Delete link unique_listing start -->
+      <div class="col">
+        <%= link_to unique_listing, method: :delete, data: { confirm: "Do you really want to delete this unique_listing?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+      <!-- Delete link unique_listing end -->
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(unique_listing.updated_at) %> ago
+  </div>
+</div>

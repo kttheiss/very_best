@@ -1,0 +1,57 @@
+<% was_validated = unique_listing.errors.any? %>
+
+<%= form_with(model: unique_listing, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <!-- Label and input for dish_id start -->
+  <div class="form-group">
+    <% dish_class = "form-control" %>
+    <% dish_was_invalid = unique_listing.errors.include?(:dish) %>
+
+    <% if was_validated %>
+      <% if dish_was_invalid %>
+        <% dish_class << " is-invalid" %>
+      <% else %>
+        <% dish_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :dish_id %>
+    <!-- Input for dish_id start -->
+    <%= f.number_field :dish_id, class: dish_class, placeholder: "Enter dish" %>
+    <!-- Input for dish_id end -->
+    <% if dish_was_invalid %>
+      <% unique_listing.errors.full_messages_for(:dish).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for dish_id end -->
+  <!-- Label and input for venue_id start -->
+  <div class="form-group">
+    <% venue_class = "form-control" %>
+    <% venue_was_invalid = unique_listing.errors.include?(:venue) %>
+
+    <% if was_validated %>
+      <% if venue_was_invalid %>
+        <% venue_class << " is-invalid" %>
+      <% else %>
+        <% venue_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :venue_id %>
+    <!-- Input for venue_id start -->
+    <%= f.number_field :venue_id, class: venue_class, placeholder: "Enter venue" %>
+    <!-- Input for venue_id end -->
+    <% if venue_was_invalid %>
+      <% unique_listing.errors.full_messages_for(:venue).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- Label and input for venue_id end -->
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

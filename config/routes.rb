@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :unique_listings
   resources :bookmarks
   resources :users
   resources :venues
