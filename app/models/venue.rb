@@ -12,6 +12,10 @@ class Venue < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :users,
+             :through => :bookmarks,
+             :source => :user
+
   # Validations
 
   # Scopes
