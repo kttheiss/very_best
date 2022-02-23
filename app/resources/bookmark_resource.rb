@@ -7,6 +7,8 @@ class BookmarkResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :user
+
   belongs_to :venue
 
   # Indirect associations
